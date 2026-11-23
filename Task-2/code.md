@@ -1,113 +1,109 @@
-# Railway Fare and Reservation Calculator Using Python
+# Progressive Electricity Billing System Using Python
 
 ## 1. Problem Statement
- Railway Fare and Reservation Calculator: Calculate fares for multiple passengers using distance 
-slabs, travel classes, age-based concessions, reservation fees, and specified cancellation penalties. 
+ Progressive Electricity Billing: Calculate household bills using multiple consumption slabs, fixed charges, surcharges, and rebates, then compare bills across several months and identify unusual increases.
+
 ## 2. Algorithm
 
-**Step 1:** Start the program.
-
-**Step 2:** Enter the number of passengers.
-
-**Step 3:** Enter passenger details:
-- Name
-- Age
-- Distance
-- Travel class
-
-**Step 4:** Calculate the basic fare based on distance slabs.
-
-**Step 5:** Calculate the fare based on travel class.
-
-**Step 6:** Apply age-based concessions.
-
-**Step 7:** Add the reservation fee.
-
-**Step 8:** Calculate the final ticket fare.
-
-**Step 9:** Ask whether the ticket is cancelled.
-
-**Step 10:** If cancelled, calculate the cancellation penalty as 25% of the ticket fare.
-
-**Step 11:** Display passenger-wise fare details and total amount.
-
-**Step 12:** Stop the program.
+1. Start the program.
+2. Define electricity tariff rates for different consumption slabs.
+3. Get the number of months from the user.
+4. For each month, enter the electricity units consumed.
+5. Calculate the energy charges based on progressive slabs:
+   - First 100 units: ₹2 per unit.
+   - Next 100 units: ₹3 per unit.
+   - Next 100 units: ₹5 per unit.
+   - Above 300 units: ₹7 per unit.
+6. Add fixed charges of ₹50.
+7. Calculate a surcharge of 5% on the energy charges.
+8. Apply a rebate of 2% if energy consumption is below 100 units.
+9. Calculate the final bill.
+10. Store the monthly bill and consumption details.
+11. Compare the current month's bill with the previous month's bill.
+12. If the bill increases by more than 30%, display an unusual increase warning.
+13. Display the monthly bill details.
+14. Stop the program.
 
 ## 3. Flowchart (Mermaid)
-
 ```mermaid
 flowchart TD
-    A([Start]) --> B[/Enter number of passengers/]
-    B --> C[/Enter passenger details/]
-    C --> D[Calculate fare based on distance]
-    D --> E[Apply travel class charges]
-    E --> F{Check passenger age}
-    F -->|Below 5| G[100% concession]
-    F -->|5 to 12| H[50% concession]
-    F -->|60 and above| I[40% concession]
-    F -->|Others| J[No concession]
-    G --> K[Add reservation fee]
-    H --> K
-    I --> K
-    J --> K
-    K --> L{Ticket cancelled?}
-    L -->|Yes| M[Calculate 25% cancellation penalty]
-    L -->|No| N[Calculate final fare]
-    M --> O[Display passenger details]
-    N --> O
-    O --> P{More passengers?}
-    P -->|Yes| C
-    P -->|No| Q[Display total amount]
-    Q --> R([Stop])
+    A([Start]) --> B[Define slab rates and charges]
+    B --> C[Enter number of months]
+    C --> D[Initialize month counter]
+    D --> E[/Enter monthly units consumed/]
+    E --> F[Calculate slab-wise energy charges]
+    F --> G[Add fixed charges]
+    G --> H[Calculate 5 percent surcharge]
+    H --> I{Units below 100?}
+    I -- Yes --> J[Apply 2 percent rebate]
+    I -- No --> K[No rebate]
+    J --> L[Calculate final bill]
+    K --> L
+    L --> M[Store monthly bill and units]
+    M --> N{More months?}
+    N -- Yes --> O[Increment month counter]
+    O --> E
+    N -- No --> P[Compare consecutive monthly bills]
+    P --> Q{Increase greater than 30 percent?}
+    Q -- Yes --> R[Display unusual increase warning]
+    Q -- No --> S[Display normal bill status]
+    R --> T[Display monthly bill report]
+    S --> T
+    T --> U([Stop])
+
 ```
 ## 5. Sample Input
 
-```text
-Enter number of passengers: 2
+```
+Enter number of months: 3
 
-Passenger 1
-Enter passenger name: Likith
-Enter age: 20
-Enter distance in km: 200
-1. Sleeper
-2. AC 3 Tier
-3. AC 2 Tier
-Select travel class: 1
-Is ticket cancelled? (yes/no): no
+Month 1
+Enter electricity units consumed: 80
 
-Passenger 2
-Enter passenger name: Rahul
-Enter age: 65
-Enter distance in km: 200
-1. Sleeper
-2. AC 3 Tier
-3. AC 2 Tier
-Select travel class: 2
-Is ticket cancelled? (yes/no): yes
+Month 2
+Enter electricity units consumed: 150
+
+Month 3
+Enter electricity units consumed: 300
 ```
 
 ## 6. Sample Output
 
-```text
-Passenger Name: Likith
-Travel Class: Sleeper
-Basic Fare: 250.0
-Concession: 0 %
-Reservation Fee: 50
-Cancellation Penalty: 0
-Final Fare: 300.0
-
-Passenger Name: Rahul
-Travel Class: AC 3 Tier
-Basic Fare: 300.0
-Concession: 40 %
-Reservation Fee: 50
-Cancellation Penalty: 87.5
-Final Fare: 87.5
-
-==============================
-Total Railway Amount: 387.5
-==============================
 ```
+Month 1
+Energy Charge: Rs. 160.0
+Fixed Charge: Rs. 50
+Surcharge: Rs. 8.0
+Rebate: Rs. 3.2
+Total Bill: Rs. 214.8
 
+Month 2
+Energy Charge: Rs. 350.0
+Fixed Charge: Rs. 50
+Surcharge: Rs. 17.5
+Rebate: Rs. 0
+Total Bill: Rs. 417.5
 
+Month 3
+Energy Charge: Rs. 1000.0
+Fixed Charge: Rs. 50
+Surcharge: Rs. 50.0
+Rebate: Rs. 0
+Total Bill: Rs. 1100.0
+
+========== MONTHLY BILL COMPARISON ==========
+
+Month 1 - Bill: Rs. 214.8
+
+Month 2 - Bill: Rs. 417.5
+Bill Change: Rs. 202.7
+Percentage Change: 94.36 %
+WARNING: Unusual increase in electricity bill!
+
+Month 3 - Bill: Rs. 1100.0
+Bill Change: Rs. 682.5
+Percentage Change: 163.47 %
+WARNING: Unusual increase in electricity bill!
+
+========== PROGRAM COMPLETED ==========
+```
